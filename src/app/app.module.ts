@@ -5,20 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
-import { UserAddComponent } from './components/user-add/user-add.component';
-import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './lib/material/material.module';
 import { ValidateErrorModule } from './lib/validate-error/validate-error.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     UserFormComponent,
-    UserAddComponent,
-    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     MaterialModule,
     ValidateErrorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,63 @@
-<p>user-form works!</p>
+<div class="container">
+    <mat-toolbar class="header">
+        <h2>
+            {{isEdit?'Edit':'Add'}} User
+        </h2>
+        <button mat-icon-button color="warn" (click)="closeDialog()">
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </mat-toolbar>
+    <form [formGroup]="userForm" class="form">
+        <div class="input-box">
+            <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" required placeholder="Enter first name">
+                <mat-error>
+                    {{userForm.controls['firstName'].errors|validate:'First Name'}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" required placeholder="Enter last name">
+                <mat-error>
+                    {{userForm.controls['lastName'].errors|validate:'Last Name'}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="input-box">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required placeholder="Enter email">
+                <mat-error>
+                    {{userForm.controls['email'].errors|validate:'Email'}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phoneNumber" required placeholder="Enter phone number"
+                    oninput="this.value=this.value.replace(/\D/g,'')">
+                <mat-error>
+                    {{userForm.controls['phoneNumber'].errors|validate:'Phone number'}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="image-box">
+            <img *ngIf="previewPhoto" [src]="previewPhoto" alt="image" height="150" width="200">
+            <input type="file" accept="image/*" style="display: none;" #photo (change)="selectFile($event)">
+            <button type="button" mat-flat-button color="primary" (click)="photo.click()">{{isEdit?'Chnage':'Upload'}}
+                Photo</button>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <button *ngIf="!isLoading" type="button" mat-raised-button color="primary"
+                [disabled]="userForm.invalid || (!selectedPhoto && !previewPhoto)" (click)="submit()">
+                Submit </button>
+            <button *ngIf="isLoading" type="button"> Submit
+                <mat-spinner color="accent" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+            </button>
+        </div>
+    </form>
+</div>
