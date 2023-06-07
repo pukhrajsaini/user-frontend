@@ -2,6 +2,7 @@ import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CONFIG } from 'src/app/constants/config.constant';
 import { User, UserApiResponse } from 'src/app/modals/user.modal';
 import { UserService } from 'src/app/services/user.service';
 
@@ -22,7 +23,7 @@ export class UserFormComponent {
 
   selectedPhoto: any;
   previewPhoto: any;
-  assetUrl = 'http://localhost:3000';
+  assetUrl = CONFIG.assetUrl;
   userData: User | undefined;
   isEdit = false;
   userId: string = '';
